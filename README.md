@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>SASIRAJKUMAR T J</H3>
+<H3>212222230137</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>22-08-2024</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,55 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```python
+import pandas as pd                                                 
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         
+df.head()
+#Find missing values
+df.isnull().sum()
+df.duplicated().sum()
+           
+df=df.drop(['Surname', 'Geography','Gender'], axis=1)
+
+scaler=StandardScaler()                                             
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+
+X=df.iloc[:,:-1].values
+Y=df.iloc[:,-1].values                     
+print("X:",X)
+print("Y:",Y)
+        
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)
+print("Xtrain:" ,Xtrain, "\nXtest:", Xtest)                   # X Train and Test
+print("Ytrain:" ,Ytrain, "\nYtest:", Ytest)                   # Y Train and Test                  
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+### DATASET
+![Screenshot 2024-08-22 092555](https://github.com/user-attachments/assets/df8f9be5-a7a4-408a-a17b-a6e2163e40d2)
+
+### NULL VALUES:
+![308667302-f9541e19-1be2-4997-814f-7dd190775c6a](https://github.com/user-attachments/assets/670aaf2f-11c6-4297-a646-0768158de34d)
+
+
+### NORMALIZED DATA:
+![Screenshot 2024-08-22 093125](https://github.com/user-attachments/assets/a9c1223b-3115-4ff9-a52a-fa22199ccc02)
+
+
+### DATA SPLITTING:
+![Screenshot 2024-08-22 093225](https://github.com/user-attachments/assets/452dcaff-9034-4d6b-8f49-b7fd891320e7)
+
+
+### TRAIN AND TEST DATA:
+![Screenshot 2024-08-22 093302](https://github.com/user-attachments/assets/22ad7a0c-7f62-4696-842b-d6decbd9f182)
+
 
 
 ## RESULT:
